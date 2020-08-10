@@ -14,10 +14,8 @@ class RecyclerViewAdapter(private val list: IntArray) :
     private val SUM_NON_ZERO = 2
 
     override fun getItemViewType(position: Int) =
-        if (checkSumZero(position))
-            SUM_ZERO
+        if (checkSumZero(position)) SUM_ZERO
         else SUM_NON_ZERO
-
 
     private fun checkSumZero(position: Int): Boolean {
         val sum = list[position]
@@ -27,7 +25,6 @@ class RecyclerViewAdapter(private val list: IntArray) :
         }
         return false
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         if (viewType == SUM_ZERO)
@@ -40,8 +37,8 @@ class RecyclerViewAdapter(private val list: IntArray) :
             )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        if (holder is SumZeroNumberHolder) holder.itemView.textViewBig.text =
-            list[position].toString()
+        if (holder is SumZeroNumberHolder)
+            holder.itemView.textViewBig.text = list[position].toString()
         else
             holder.itemView.textView.text = list[position].toString()
 
